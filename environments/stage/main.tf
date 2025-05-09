@@ -1,10 +1,6 @@
-provider "aws" {
-  region = var.aws_region
-}
-
 module "vpc_stage" {
   source = "../../modules/vpc"
-  environment = "stage"
+  environment = var.environment
   cidr_block = var.stage_vpc_cidr
-  vpc_name = "stage-vpc"
+  vpc_name = var.vpc_name
 }

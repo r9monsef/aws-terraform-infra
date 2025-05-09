@@ -7,6 +7,9 @@ resource "aws_vpc" "this" {
     Environment = var.environment
   }
 }
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 
 resource "aws_subnet" "this" {
   count = 3
@@ -18,12 +21,4 @@ resource "aws_subnet" "this" {
     Name = "${var.vpc_name}-subnet-${count.index + 1}"
     Environment = var.environment
   }
-}
-
-output "vpc_id" {
-  value = aws_vpc.this.id
-}
-
-output "subnet_ids" {
-  value = aws_subnet.this[*].id
 }
