@@ -18,3 +18,10 @@ variable "private_subnet_count" {
   type        = number
   default     = 3
 }
+
+variable "subnet_route_table_map" {
+  description = "Map of subnet suffix (e.g. 'public-subnet-1') to route table type (public/private)"
+  type = map(object({
+    type = string # "public" or "private"
+  }))
+}
